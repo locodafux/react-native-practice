@@ -8,6 +8,8 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import BooksScreen from './screens/BooksScreen';
 import AddBookScreen from './screens/AddBookScreen';
+import BookDetailsScreen from './screens/BookDetailsScreen';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +31,8 @@ function BooksStack() {
         component={AddBookScreen}
         options={{ title: 'Add Book', headerShown: true }}
       />
+
+      <Stack.Screen name="BookDetails" component={BookDetailsScreen} />
     </Stack.Navigator>
   );
 }
