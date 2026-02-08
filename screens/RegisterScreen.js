@@ -49,7 +49,7 @@ export default function RegisterScreen({ navigation }) {
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.goBack()} style={styles.linkWrap}>
-        <Text style={styles.link}>Already have an account? Login</Text>
+        <Text >Already have an account? <Text style={styles.link}>Login</Text></Text>
       </TouchableOpacity>
     </View>
   );
