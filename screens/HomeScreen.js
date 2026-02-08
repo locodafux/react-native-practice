@@ -1,21 +1,23 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
+import { useAuth } from '../context/AuthContext';
 
-export default function HomeScreen({ navigation, route }) {
-  const { email } = route.params || {};
+export default function HomeScreen() {
+  const { logout, state } = useAuth();
 
-  const handleLogout = () => {
-    navigation.reset({
-      index: 0,
-      routes: [{ name: 'Login' }],
-    });
+  const handleLogout = async () => {
+    await logout();
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome{email ? `, ${email}` : ''}!</Text>
-      <TouchableOpacity style={styles.button} onPress={handleLogout}>
-        <Text style={styles.buttonText}>Logout</Text>
+      <Text style={styles.title}>Welcome!</Text>
+      <TouchableOpacity style={styles.button} onPress={handleLogout} disabled={state.isLoading}>
+        {state.isLoading ? (
+          <ActivityIndicator color="#fff" />
+        ) : (
+          <Text style={styles.buttonText}>Logout</Text>
+        )}
       </TouchableOpacity>
     </View>
   );
